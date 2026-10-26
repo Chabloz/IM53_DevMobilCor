@@ -42,7 +42,7 @@ function tickUpdate(dt) {
   if (angle === false) return;
   circles.forEach(circle => {
     circle.velocity.setAngle(angle);
-    circle.update(dt, ctx.canvas.width, ctx.canvas.height)
+    circle.update(dt, ctx.canvas.width, ctx.canvas.height);
   });
 }
 
