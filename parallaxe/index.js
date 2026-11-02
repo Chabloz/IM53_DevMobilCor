@@ -1,4 +1,4 @@
-import Vector2 from "./class/Vector2.js";
+import Vector2D from "./class/Vector2D.js";
 import Circle from "./class/CircleInFlatTorus.js";
 import { randomInt, clamp} from "./lib/math.js";
 import KeyboardAngle from "./class/KeyboardAngle.js";
@@ -25,11 +25,11 @@ const circles = [];
 const nbCircles = Math.max(ctx.canvas.height/80 * ctx.canvas.width/80, 80);
 for (let i = 0; i < nbCircles; i++) {
   const radius = randomInt(3, clamp(i/(nbCircles/50), 3, 50));
-  const position = new Vector2({
+  const position = new Vector2D({
     x: randomInt(0, ctx.canvas.width),
     y: randomInt(0, ctx.canvas.height)
   });
-  const velocity = Vector2.fromAngle(0, radius / 100);
+  const velocity = Vector2D.fromAngle(0, radius / 100);
   const color = starColors[randomInt(0, starColors.length - 1)];
   circles.push(new Circle({ position, radius, velocity, color }));
 }

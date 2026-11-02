@@ -1,4 +1,4 @@
-import Vector2 from "./class/Vector2.js";
+import Vector2D from "./class/Vector2D.js";
 import Circle from "./class/Circle.js";
 import Tweens, { easings } from "./class/Tweens.js";
 
@@ -16,14 +16,14 @@ const gap = 10;
 const rowWidth = easings.length * radius * 2 + (easings.length - 1) * gap;
 const startX = (ctx.canvas.width - rowWidth) / 2 + radius;
 for (const [i, ease] of easings.entries()) {
-  const position = new Vector2({
+  const position = new Vector2D({
     x: startX + i * (radius * 2 + gap),
     y: ctx.canvas.height * 2 / 3
   });
   const circle = new Circle({
     position,
     radius,
-    velocity: new Vector2(),
+    velocity: new Vector2D(),
     color: 'oklch(75% 0.15 30)'
   });
   circles.push(circle);
