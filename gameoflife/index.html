@@ -17,11 +17,76 @@
         display: block;
         background-color: black;
       }
+      .options {
+        position: fixed;
+        inset: 1rem auto auto 1rem;
+        width: min(16rem, calc(100% - 2rem));
+        color: #eee;
+      }
+      .options[open] {
+        background: rgb(20 20 20 / 90%);
+      }
+      .options summary {
+        display: block;
+        width: fit-content;
+        padding: 0.5rem;
+        font: 1.5rem/1.25 system-ui, sans-serif;
+        cursor: pointer;
+      }
+      .options summary::-webkit-details-marker {
+        display: none;
+      }
+      .options-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0 0.875rem 0.875rem;
+      }
+      .options input {
+        width: 100%;
+        min-width: 0;
+        accent-color: #eee;
+      }
+      .options label {
+        white-space: nowrap;
+      }
+      .options input[type="text"],
+      .options button {
+        padding: 0.125rem 0.25rem;
+        border: 1px solid #444;
+        background: transparent;
+        color: inherit;
+      }
+      .options button {
+        cursor: pointer;
+      }
     </style>
     <script src="lib/mainloop.min.js"></script>
     <script type="module" src="index.js"></script>
 </head>
 <body>
   <canvas></canvas>
+  <details class="options">
+    <summary aria-label="Options">&#9776;</summary>
+    <div class="options-content">
+      <label for="cell-size">Size (4–40):</label>
+      <input type="range" id="cell-size" name="cell-size" min="4" max="40" step="1" value="10">
+    </div>
+    <div class="options-content">
+      <label for="speed">Speed (0–120):</label>
+      <input type="range" id="speed" name="speed" min="0" max="120" step="1" value="60">
+    </div>
+    <div class="options-content">
+      <label for="alive-probability">Alive (0–1):</label>
+      <input type="range" id="alive-probability" name="alive-probability" min="0" max="1" step="0.01" value="0.5">
+    </div>
+    <div class="options-content">
+      <label for="rules">Rules:</label>
+      <input type="text" id="rules" name="rules" value="B3/S23" pattern="[Bb][0-8]*\/[Ss][0-8]*" title="Use B3/S23: B = birth, S = survival (0-8 neighbors)." spellcheck="false" required>
+    </div>
+    <div class="options-content">
+      <button type="button" id="reset">Reset</button>
+    </div>
+  </details>
 </body>
 </html>

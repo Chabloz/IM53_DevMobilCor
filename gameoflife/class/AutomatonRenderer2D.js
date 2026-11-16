@@ -6,11 +6,28 @@ export default class AutomatonRenderer2D {
     this.cellSize = cellSize;
     this.ctx = ctx;
     this.automaton = automaton;
-    console.log(this.automaton);
   }
 
   setColorAlive(color) {
     this.colorAlive = color;
+  }
+
+  setCellSize(cellSize) {
+    this.cellSize = cellSize;
+    this.reset();
+  }
+
+  setAliveProbability(aliveProbability) {
+    this.automaton.aliveProbability = aliveProbability;
+    this.reset();
+  }
+
+  reset() {
+    this.automaton.resize(
+      Math.floor(this.ctx.canvas.clientHeight / this.cellSize),
+      Math.floor(this.ctx.canvas.clientWidth / this.cellSize)
+    );
+    this.redraw();
   }
 
   draw() {

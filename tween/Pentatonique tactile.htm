@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pentatonique tactile</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #10141e; overflow: hidden; }
+    .bands { position: fixed; inset: 0; display: flex; gap: 2px; padding: 0 1px; }
+    .bands > div { flex: 1; background: oklch(66% 0.12 var(--hue)); }
+    canvas { position: fixed; inset: 0; display: block; width: 100dvw; height: 100dvh; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+  </style>
+</head>
+<body>
+  <div class="bands">
+    <div style="--hue: 25"></div>
+    <div style="--hue: 80"></div>
+    <div style="--hue: 165"></div>
+    <div style="--hue: 245"></div>
+    <div style="--hue: 305"></div>
+  </div>
+  <canvas></canvas>
+
+
+</body></html>

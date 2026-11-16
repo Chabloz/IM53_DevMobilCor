@@ -1,5 +1,6 @@
 import Automaton from "./class/Automaton.js";
 import AutomatonRenderer2D from "./class/AutomatonRenderer2D.js";
+import AutomatonController from "./class/AutomatonController.js";
 import Tweens from "./class/Tweens.js";
 
 /* Init canvas */
@@ -15,7 +16,7 @@ const rows = Math.floor(ctx.canvas.clientHeight / cellSize);
 const cols = Math.floor(ctx.canvas.clientWidth / cellSize);
 
 const automaton = new Automaton({ rows, cols, aliveProbability });
-const automatonRenderer = new AutomatonRenderer2D({ automaton, ctx });
+const automatonRenderer = new AutomatonRenderer2D({ automaton, ctx, cellSize });
 
 /* Animate automaton color */
 const tweens = new Tweens();
@@ -34,11 +35,12 @@ function tickRender(t) {
 }
 
 MainLoop.setSimulationTimestep(1000/60);
+const automatonController = new AutomatonController({ automatonRenderer, mainLoop: MainLoop });
 MainLoop
   .setUpdate(tickUpdate)
   .setDraw(tickRender)
   .start();
 
 document.addEventListener('visibilitychange', () => {
-  document.hidden ? MainLoop.stop() : MainLoop.start();
+  document.hidden || automatonController.speed === 0 ? MainLoop.stop() : MainLoop.start();
 });

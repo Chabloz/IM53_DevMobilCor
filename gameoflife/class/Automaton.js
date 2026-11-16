@@ -48,4 +48,21 @@ export default class Automaton {
     return this.matrix;
   }
 
+  getRules() {
+    return `B${[...this.birth].join("")}/S${[...this.survival].join("")}`;
+  }
+
+  setRules(rules) {
+    const [birth, survival] = rules.toUpperCase().split("/");
+    this.birth = new Set([...birth.slice(1)].map(Number));
+    this.survival = new Set([...survival.slice(1)].map(Number));
+  }
+
+  resize(rows, cols) {
+    this.rows = rows;
+    this.cols = cols;
+    this.matrix = new Matrix2D(rows, cols);
+    this.addRandomLive();
+  }
+
 }
