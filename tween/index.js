@@ -28,7 +28,7 @@ pointersManager.setOnTouchStart((id, pos) => {
   // Play note
   const position = pos.clone();
   const noteInd = Math.floor(pos.x / canvas.clientWidth * notes.length);
-  const note = notes[noteInd];
+  const note = notes[noteInd] ?? notes.at(-1);
   audio.resume();
   synth.noteOn(0, note, 90);
 
@@ -87,7 +87,6 @@ function tickRender(t) {
     circle.draw(ctx);
   }
 }
-
 
 MainLoop.setSimulationTimestep(1000/60);
 MainLoop
